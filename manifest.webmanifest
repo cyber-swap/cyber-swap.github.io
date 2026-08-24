@@ -1,0 +1,12 @@
+{
+  "name": "Cyber Swap",
+  "short_name": "Cyber Swap",
+  "description": "Swap ETH, USDC and tokens on Cyber, an EVM Ethereum layer 2 in the CyberConnect ecosystem.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "en",
+  "background_color": "#0a0e14",
+  "theme_color": "#0a0e14",
+  "icons": [{ "src": "cyber.png", "sizes": "any", "type": "image/png", "purpose": "any" }]
+}

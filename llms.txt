@@ -1,0 +1,25 @@
+# Cyber Swap — Swap on Cyber L2 Reference
+
+> Trade ETH, USDC and tokens on Cyber — an EVM Ethereum layer 2 in the CyberConnect ecosystem — through a non-custodial decentralized exchange. Independent, not affiliated with Cyber or CyberConnect.
+
+## Key Facts
+- Cyber: EVM-compatible Ethereum layer 2 built on the OP Stack (Optimism Superchain), tied to the CyberConnect social/identity ecosystem
+- Gas: paid in ETH on Cyber
+- Custody: non-custodial — swaps settle through public smart contracts; wallet signs
+- Costs: DEX pool fee + network gas (ETH) + price impact; ERC-20 spend needs a one-time approval
+- Common pairs: ETH <-> USDC / USDT and other tokens with on-chain liquidity
+- Interpretation: "Cyber Swap" is treated as swapping on the Cyber L2 generally, not a single named product
+- Independent resource — NOT affiliated with or endorsed by Cyber or CyberConnect
+
+## Internal Sections & App Navigation
+- [What is Cyber Swap?](#what)
+- [How swapping works](#how)
+- [Cyber network](#network)
+- [Tokens & pairs](#tokens)
+- [Fees, gas & price impact](#fees)
+- [Is it safe?](#safety)
+- [FAQ](#faq)
+- [Open Cyber Swap App](dashboard/index.html)
+
+## Disclaimer
+Independent page. Not affiliated with or endorsed by Cyber or CyberConnect. Not financial advice.
