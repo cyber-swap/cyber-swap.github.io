@@ -1,249 +1,283 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CyberSwap — Swap Tokens Across EVM Networks, Self-Custody</title>
-<meta name="description" content="CyberSwap is a self-custody swap interface for exchanging tokens across EVM networks through automated market maker liquidity pools. See how price impact, slippage tolerance and routing work before you sign.">
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber Swap — Swap Tokens on Cyber L2</title>
+<meta name="description" content="Cyber Swap is a non-custodial interface to swap tokens on Cyber, an Ethereum layer-2 in the Optimism Superchain, with ETH for gas, signed from your own wallet.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f6f5f4">
 <link rel="canonical" href="https://cyber-swap.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CyberSwap">
-<meta property="og:url" content="https://cyber-swap.github.io/">
-<meta property="og:image" content="https://cyber-swap.github.io/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CyberSwap">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://cyber-swap.github.io/#website", "url": "https://cyber-swap.github.io/", "name": "CyberSwap — Swap Tokens Across EVM Networks, Self-Custody"}, {"@type": "WebPage", "@id": "https://cyber-swap.github.io/#webpage", "url": "https://cyber-swap.github.io/", "name": "CyberSwap — Swap Tokens Across EVM Networks, Self-Custody", "isPartOf": {"@id": "https://cyber-swap.github.io/#website"}, "description": "CyberSwap is a self-custody swap interface for exchanging tokens across EVM networks through automated market maker liquidity pools. See how price impact, slippage tolerance and routing work before you sign.", "datePublished": "2026-11-01", "dateModified": "2026-11-01"}, {"@type": "SoftwareApplication", "name": "CyberSwap", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyber-swap.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Swaps"}, {"@type": "ListItem", "position": 3, "name": "CyberSwap"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is CyberSwap?", "acceptedAnswer": {"@type": "Answer", "text": "CyberSwap is a self-custody swap interface that exchanges one token for another by pricing trades against automated market maker liquidity pools instead of a matched order book, while your tokens stay in your own wallet."}}, {"@type": "Question", "name": "Does CyberSwap take custody of my tokens?", "acceptedAnswer": {"@type": "Answer", "text": "No. CyberSwap only ever asks your wallet to sign a transaction. You hold your own keys before, during and after every swap."}}, {"@type": "Question", "name": "Why does my CyberSwap trade need two signatures?", "acceptedAnswer": {"@type": "Answer", "text": "The first signature approves a limited allowance for the ERC-20 token being swapped; the second actually executes the swap. Native assets like ETH skip the approval step entirely."}}, {"@type": "Question", "name": "What is price impact on a CyberSwap trade?", "acceptedAnswer": {"@type": "Answer", "text": "Price impact is how far a pool's price moves because your own trade changes the ratio of its reserves. Larger trades against shallower pools move the price more than smaller trades against deeper pools."}}, {"@type": "Question", "name": "How should I set slippage tolerance?", "acceptedAnswer": {"@type": "Answer", "text": "Use a tighter tolerance for stable pairs and a wider one for volatile pairs. Too tight and the trade can fail; too loose and you risk a worse fill than necessary."}}, {"@type": "Question", "name": "What gas token does CyberSwap use?", "acceptedAnswer": {"@type": "Answer", "text": "Gas is paid in the native token of whichever network you are trading on — ETH on Ethereum, or the equivalent native token on other EVM networks such as Arbitrum — never in the tokens being swapped."}}, {"@type": "Question", "name": "How do I know I am swapping the real token?", "acceptedAnswer": {"@type": "Answer", "text": "Verify the contract address on a trusted explorer before trading an unfamiliar pair. Matching the address rather than the name or logo is what actually confirms the token's identity."}}]}]}</script>
+<meta property="og:type" content="website"><meta property="og:site_name" content="Cyber Swap"><meta property="og:title" content="Cyber Swap — Swap Tokens on Cyber L2"><meta property="og:description" content="Cyber Swap is a non-custodial interface to swap tokens on Cyber, an Ethereum layer-2 in the Optimism Superchain, with ETH for gas, signed from your own wallet."><meta property="og:url" content="https://cyber-swap.github.io/"><meta property="og:image" content="https://cyber-swap.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Cyber Swap — Swap Tokens on Cyber L2"><meta name="twitter:description" content="Cyber Swap is a non-custodial interface to swap tokens on Cyber, an Ethereum layer-2 in the Optimism Superchain, with ETH for gas, signed from your own wallet."><meta name="twitter:image" content="https://cyber-swap.github.io/og-image.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://cyber-swap.github.io/#organization","name":"Cyber Swap","url":"https://cyber-swap.github.io/","description":"Cyber Swap is a non-custodial interface to swap tokens on Cyber, an Ethereum layer-2 in the Optimism Superchain, with ETH for gas, signed from your own wallet.","logo":{"@type":"ImageObject","@id":"https://cyber-swap.github.io/#logo","url":"https://cyber-swap.github.io/icon.svg","caption":"Cyber Swap"}},{"@type":"WebSite","@id":"https://cyber-swap.github.io/#website","url":"https://cyber-swap.github.io/","publisher":{"@id":"https://cyber-swap.github.io/#organization"},"name":"Cyber Swap"},{"@type":"WebPage","@id":"https://cyber-swap.github.io/#webpage","url":"https://cyber-swap.github.io/","publisher":{"@id":"https://cyber-swap.github.io/#organization"},"name":"Cyber Swap — Swap Tokens on Cyber L2","isPartOf":{"@id":"https://cyber-swap.github.io/#website"},"mainEntity":{"@id":"https://cyber-swap.github.io/#app"},"breadcrumb":{"@id":"https://cyber-swap.github.io/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://cyber-swap.github.io/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyber-swap.github.io/"},{"@type":"ListItem","position":2,"name":"Cyber Swap","item":"https://cyber-swap.github.io/"}]},{"@type":"WebApplication","@id":"https://cyber-swap.github.io/#app","url":"https://cyber-swap.github.io/","publisher":{"@id":"https://cyber-swap.github.io/#organization"},"name":"Cyber Swap","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Cyber Swap is a non-custodial interface to swap tokens on Cyber, an Ethereum layer-2 in the Optimism Superchain, with ETH for gas, signed from your own wallet.","isPartOf":{"@id":"https://cyber-swap.github.io/#website"}},{"@type":"FAQPage","@id":"https://cyber-swap.github.io/#faq","isPartOf":{"@id":"https://cyber-swap.github.io/#webpage"},"about":{"@id":"https://cyber-swap.github.io/#app"},"name":"Cyber Swap FAQ","mainEntity":[{"@type":"Question","name":"What is Cyber Swap?","acceptedAnswer":{"@type":"Answer","text":"It is a non-custodial interface for swapping tokens on Cyber, an Ethereum layer-2 built by CyberConnect and part of the Optimism Superchain. You connect your wallet, review a quote and sign the swap yourself."}},{"@type":"Question","name":"What do I need to pay gas on Cyber?","acceptedAnswer":{"@type":"Answer","text":"You need ETH on the Cyber network. Gas is always paid in ETH, so keep a small balance even if the tokens you trade are stablecoins or other assets."}},{"@type":"Question","name":"How do I get funds onto Cyber?","acceptedAnswer":{"@type":"Answer","text":"Use a bridge to move assets from Ethereum or another supported network onto Cyber. The bridge shows its own fee and timing, and the swap interface only works with tokens already on Cyber."}},{"@type":"Question","name":"Do I need an account to swap?","acceptedAnswer":{"@type":"Answer","text":"No. A wallet is enough, with no sign-up or identity check on the interface. Your funds stay in your wallet unless you approve and sign a swap."}},{"@type":"Question","name":"Why is a token approval needed?","acceptedAnswer":{"@type":"Answer","text":"ERC-20 tokens need a one-time allowance before a router can move them on your behalf. The approval is a separate transaction that costs a little gas. Native ETH needs no approval."}},{"@type":"Question","name":"Is swapping on a layer-2 riskier than on Ethereum?","acceptedAnswer":{"@type":"Answer","text":"It adds some risks of its own, such as bridge contracts and the layer-2\u0027s own software, on top of the usual smart contract and price risks. Check the quote, verify token addresses and only move what you are comfortable with."}}]}]}
+</script>
 <style>
-:root{--bg:#FAF9FC;--surface:#FFFFFF;--text:#16131F;--muted:#5F5870;--accent:#6D28D9;--accent-ink:#FFFFFF;--radius:18px;--display:"Schibsted Grotesk";--body:"Inter"}
+@font-face{font-family:'Inter';src:url('assets/inter.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('assets/space-grotesk.woff2') format('woff2');font-weight:500 700;font-display:swap}
+:root{
+ --bg:#f6f5f4;--card:#fff;--ink:#17181c;--muted:#737b88;--faint:#aeb4bf;
+ --line:#ecebe9;--line-2:#e3e1de;--panel:#f8f7f6;--panel-2:#efedeb;
+ --accent:#2e7df6;--accent-hover:#286ed8;--accent-ink:#225eb8;--accent-soft:#e2edfe;--accent-on:#ffffff;--promo:#eaf2fe;--text-2:#4b5563;
+ --shadow:0 1px 2px rgba(13,17,28,.04),0 24px 56px -40px rgba(13,17,28,.24);--pico-bg:#fff;--pico-ring:rgba(13,17,28,.06);
+ --ease:cubic-bezier(.2,.7,.2,1);
+ --head:"Space Grotesk","Arial",sans-serif;--body:"Inter","Arial",sans-serif;color-scheme:light}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:2rem}
-body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.7 var(--body);-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-underline-offset:.22em}
-a:hover{text-decoration-thickness:2px}
-button,input,select,textarea{font:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
-::selection{background:var(--accent);color:var(--accent-ink)}
-.cf6c705{width:min(1180px,calc(100% - 64px));margin-inline:auto}
-.c0aed93{position:absolute;top:1rem;left:1rem;z-index:5;padding:.6rem 1rem;background:var(--surface);border-radius:var(--radius);transform:translateY(-200%)}
-.c0aed93:focus{transform:translateY(0)}
-.c08a9cf{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:96px;border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
-.c373645{display:inline-flex;align-items:center;gap:.7rem;color:var(--text);font:650 1.1rem/1.2 var(--display);text-decoration:none}
-.cbce588{display:grid;place-items:center;width:36px;height:36px;background:var(--accent);color:var(--accent-ink);border-radius:calc(var(--radius) * .6)}
-.cbce588 svg{width:22px;height:22px;fill:none;stroke:var(--accent-ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.c8a67db{display:flex;align-items:center;gap:1.7rem}
-.c8a67db>a:not(.cb0193c){color:var(--muted);font-size:.9rem;text-decoration:none}
-.c8a67db>a:hover{color:var(--text)}
-.cb0193c{padding:.6rem 1rem;border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 7%,var(--surface));font-size:.9rem;font-weight:650;text-decoration:none}
-.c7dbb1c{padding-top:1.8rem;font-size:.82rem;color:var(--muted)}
-.c80f01e{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0;padding:0;list-style:none;color:var(--muted);font-size:.82rem}
-.c80f01e ol,.c80f01e ul{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0;padding:0;list-style:none}
-.c80f01e a{color:var(--muted)}
-.c80f01e [aria-current]{color:var(--text)}
-.cbcdd1e{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);align-items:start;gap:clamp(1.75rem,5vw,4rem);padding:2.25rem 0 3.5rem}
-.c967814{min-width:0}
-.cd5e482{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 1.4rem;color:var(--muted);font-size:.88rem}
-.cd5e482::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 10%,transparent)}
-h1{margin:0;font:550 clamp(2.6rem,4.9vw,4.65rem)/1.07 var(--display);letter-spacing:-.055em;overflow-wrap:anywhere;text-wrap:balance}
-h1 a{color:var(--accent)}
-.c5fce74{max-width:48ch;margin:1.6rem 0 2rem;color:var(--muted);font-size:1.07rem;line-height:1.8}
-.c1093da{display:inline-flex;justify-content:center;align-items:center;gap:1.6rem;min-height:54px;padding:.9rem 1.4rem;border:1px solid color-mix(in srgb,var(--accent) 70%,var(--text));border-radius:var(--radius);background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 88%,var(--text)));color:var(--accent-ink);font-weight:650;text-decoration:none;box-shadow:0 8px 22px color-mix(in srgb,var(--accent) 20%,transparent);transition:transform .2s ease,box-shadow .2s ease}
-.c1093da:hover{transform:translateY(-2px);box-shadow:0 12px 28px color-mix(in srgb,var(--accent) 28%,transparent)}
-.cab4c4a{font-size:1.25rem;line-height:1}
-.cbc3cb7{margin:1rem 0 0;color:var(--muted);font-size:.8rem}
-.c0b4679{position:relative;min-width:0;padding:12px;border:1px solid color-mix(in srgb,var(--accent) 15%,transparent);border-radius:calc(var(--radius) + 12px);background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 14%,var(--bg)),color-mix(in srgb,var(--accent) 3%,var(--bg)));box-shadow:0 30px 70px -25px color-mix(in srgb,var(--text) 20%,transparent)}
-.ca0aa93{padding:clamp(1.25rem,3vw,2rem);border:1px solid color-mix(in srgb,var(--text) 8%,transparent);border-radius:var(--radius);background:var(--surface);box-shadow:0 4px 14px color-mix(in srgb,var(--text) 4%,transparent)}
-.c1e9c87{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.65rem}
-.c1e9c87 h2{margin:0;font:600 1.2rem/1.3 var(--display);letter-spacing:-.025em}
-.ce1cac2{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .6rem;border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 9%,transparent);color:var(--accent);font-size:.72rem;white-space:nowrap}
-.ce1cac2::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
-.cffaea4{display:block;margin-bottom:.5rem;font-size:.83rem;font-weight:600}
-.ce23524{display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border:1px solid color-mix(in srgb,var(--text) 16%,transparent);border-radius:var(--radius);background:var(--bg);transition:border-color .2s ease}
-.ce23524:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent)}
-.ce23524 input{width:100%;min-width:0;padding:.25rem 0;border:0;background:var(--bg);color:var(--text);font:550 2rem/1.3 var(--display);font-variant-numeric:tabular-nums}
-.ce23524 input:focus-visible{outline-offset:2px}
-.c0b9ba6{color:var(--muted);font-size:.8rem}
-.c6a178a{margin:.5rem 0 1.3rem;color:var(--muted);font-size:.74rem}
-.cc5fea7{display:grid;grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr);align-items:center;gap:.6rem;padding:1.1rem 0;border-top:1px solid color-mix(in srgb,var(--text) 8%,transparent);border-bottom:1px solid color-mix(in srgb,var(--text) 8%,transparent)}
-.c6a1a54{display:flex;flex-direction:column;align-items:center;gap:.45rem;min-width:0;color:var(--muted);font-size:.75rem}
-.cd1b7bd{display:flex;align-items:center;justify-content:center;min-height:52px;max-width:100%;overflow-wrap:anywhere;color:var(--text);font-weight:600}
-.cd1b7bd img,.cd1b7bd svg{display:block;max-width:100%;width:auto;height:44px;object-fit:contain}
-.c2f3c1b{display:grid;place-items:center;width:32px;height:32px;border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);border-radius:50%;background:color-mix(in srgb,var(--accent) 7%,var(--surface));color:var(--accent)}
-.c53d5d6{padding:1.4rem 0 .25rem}
-.c89ca45{margin:0;color:var(--muted);font-size:.8rem}
-.c98888d{display:flex;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin:.3rem 0 1rem}
-.c98888d output{font:550 clamp(1.65rem,3vw,2.5rem)/1.2 var(--display);letter-spacing:-.045em;color:var(--text);overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
-.c1e7c8f{display:grid;gap:.45rem;margin:0 0 1.2rem;font-size:.8rem}
-.c1e7c8f>div{display:flex;justify-content:space-between;gap:1rem}
-.c1e7c8f dt{color:var(--muted)}
-.c1e7c8f dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
-.ca0aa93 .c1093da{width:100%;justify-content:space-between;min-height:50px;font-size:.9rem}
-.ce0fe5c{margin:1rem 0 0;color:var(--muted);font-size:.73rem;line-height:1.65}
-.cda5697{margin:.6rem 0 0;color:var(--text);font-size:.8rem;font-weight:600}
-.cda5697:empty{display:none}
-.cc12da0{padding:2.1rem 2.3rem;margin-bottom:4.5rem;border:1px solid color-mix(in srgb,var(--text) 9%,transparent);border-radius:var(--radius);background:linear-gradient(115deg,var(--surface),color-mix(in srgb,var(--accent) 4%,var(--surface)))}
-.cbb3e55{margin:0 0 1.3rem;font:550 1.5rem/1.3 var(--display);letter-spacing:-.035em}
-.c4d35ef{width:100%;border-collapse:collapse;text-align:left;font-size:.92rem}
-.c4d35ef caption{text-align:left;padding:0 0 1rem;color:var(--muted)}
-.c4d35ef th,.c4d35ef td{padding:1rem .9rem;border-bottom:1px solid color-mix(in srgb,var(--text) 9%,transparent);vertical-align:top;overflow-wrap:anywhere}
-.c4d35ef th{font-weight:600;color:var(--text)}
-.c4d35ef td{color:var(--muted)}
-.c4d35ef th:first-child,.c4d35ef td:first-child{padding-left:0}
-.c4d35ef tr:last-child>*{border-bottom:0}
-.c4d35ef thead th{font-size:.82rem;color:var(--muted)}
-.c8cb31d{max-width:820px;margin-inline:auto}
-.c4fb425{padding:0 0 2.6rem;margin:0 0 2.6rem;border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent);scroll-margin-top:2rem}
-.c12a171{margin:0 0 1.1rem;font:550 clamp(1.7rem,3vw,2.25rem)/1.2 var(--display);letter-spacing:-.04em;text-wrap:balance;overflow-wrap:anywhere}
-.ccfda15{color:var(--muted);font:400 1rem/1.85 var(--body);overflow-wrap:anywhere}
-.ccfda15 p{margin:0 0 1.15rem}
-.ccfda15 h3,.ccfda15 h4{margin:1.6rem 0 .65rem;color:var(--text);font:600 1.25rem/1.4 var(--display)}
-.ccfda15 strong{color:var(--text);font-weight:600}
-.ccfda15 ul,.ccfda15 ol{padding-left:1.4rem}
-.ccfda15 li{padding-left:.3rem;margin:.5rem 0}
-.ccfda15 li::marker{color:var(--accent)}
-.ccfda15 blockquote{margin:1.5rem 0;padding:1rem 1.4rem;border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;background:color-mix(in srgb,var(--accent) 6%,var(--surface));color:var(--text)}
-.ccfda15 img{max-width:100%;height:auto;border-radius:var(--radius)}
-.ccfda15>:last-child{margin-bottom:0}
-.c88bd8d{margin:.8rem 0;border:1px solid color-mix(in srgb,var(--text) 10%,transparent);border-radius:var(--radius);background:var(--surface);overflow:hidden}
-.c835f83{position:relative;display:block;padding:1.25rem 3.5rem 1.25rem 1.4rem;cursor:pointer;list-style:none;color:var(--text);font:550 1.05rem/1.5 var(--display)}
-.c835f83::-webkit-details-marker{display:none}
-.c835f83::after{content:"+";position:absolute;right:1.4rem;top:1.25rem;color:var(--accent);font:400 1.4rem/1.1 var(--body)}
-.c88bd8d[open]>.c835f83::after,.c88bd8d details[open]>.c835f83::after{content:"−"}
-.c88bd8d[open]{border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
-.c835f83:focus-visible{outline-offset:-5px;border-radius:var(--radius)}
-.caa0ca2{padding:0 1.4rem 1.4rem;color:var(--muted);font-size:.95rem;line-height:1.8;overflow-wrap:anywhere}
-.caa0ca2>:first-child{margin-top:0}
-.caa0ca2>:last-child{margin-bottom:0}
-.c4e3e87{max-width:820px;margin:3.5rem auto 0;padding-top:2rem;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
-.cdcef0e{display:grid;gap:.7rem;margin:0;padding:0;list-style:none}
-.cfdc95f{padding:.85rem 1rem;border:1px solid color-mix(in srgb,var(--text) 8%,transparent);border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:.86rem;overflow-wrap:anywhere}
-.cfdc95f a{color:var(--text);text-decoration-color:color-mix(in srgb,var(--accent) 55%,transparent)}
-a.cfdc95f{display:block;color:var(--text)}
-.cd40517{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:4rem;padding:1.75rem 0 2rem;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent);color:var(--muted);font-size:.8rem}
-.cd40517 p{margin:0}
-.cd40517 a{color:var(--muted)}
-@media(min-width:1500px){.cbcdd1e{padding-top:2.75rem;padding-bottom:4rem}}
-@media(max-width:850px){.cbcdd1e{grid-template-columns:1fr;gap:2.5rem;padding-top:2.5rem;padding-bottom:3rem}.c967814{max-width:640px}.c0b4679{width:100%;max-width:560px;justify-self:center}h1{font-size:clamp(2.5rem,7vw,4rem)}.c5fce74{max-width:58ch}.cc12da0{margin-bottom:3rem}.c8a67db{gap:1rem}}
-@media(max-width:540px){.cf6c705{width:calc(100% - 32px)}.c08a9cf{min-height:78px;gap:.75rem}.c373645{font-size:.95rem;gap:.5rem}.cbce588{width:30px;height:30px}.c8a67db>a:not(.cb0193c){display:none}.cb0193c{padding:.5rem .75rem;font-size:.8rem}.c7dbb1c{padding-top:1.25rem}.cbcdd1e{padding-top:2rem;gap:2rem}h1{font-size:2.65rem}.c5fce74{font-size:1rem}.c967814>.c1093da{width:100%}.cbc3cb7{text-align:center}.c0b4679{padding:8px;border-radius:calc(var(--radius) + 8px)}.ca0aa93{padding:1.2rem}.cc12da0{padding:1.4rem 1.1rem}.c4d35ef{display:block;overflow-x:auto}.c4d35ef th,.c4d35ef td{min-width:125px;padding:.8rem .65rem}.c835f83{padding-left:1rem}.caa0ca2{padding-left:1rem;padding-right:1rem}.cd40517{align-items:flex-start;flex-direction:column;margin-top:3rem}.c4fb425{margin-bottom:2rem;padding-bottom:2rem}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}.c1093da:hover{transform:none}}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;color:var(--ink);font:15px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;background:var(--bg)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:none;-webkit-mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%);mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%)}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3{margin:0;font-family:var(--head);font-weight:500;letter-spacing:-.01em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+.nav{display:flex;align-items:center;gap:24px;padding:16px 24px;max-width:1280px;margin:0 auto;width:100%}
+.brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:500;font-size:20px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;flex:0 0 auto}
+.brand img{width:28px;height:28px}
+.nlinks{display:flex;align-items:center;gap:20px}
+.nlinks a{font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .16s var(--ease)}
+.nlinks a:hover{color:var(--ink)}
+.spacer{flex:1}
+main{flex:1}
+.chain{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:10px;background:var(--panel-2);font-weight:500;font-size:14px;color:var(--ink);transition:background-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.chain img{width:20px;height:20px;border-radius:50%}
+.chain:hover{background:var(--line-2)}
+.chain .cv{width:12px;height:12px;color:var(--muted)}
+.connect{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:10px;background:var(--card);border:1px solid var(--line-2);color:var(--ink);font-weight:500;font-size:14px;transition:background-color .16s var(--ease),border-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.connect:hover{border-color:var(--faint);background:var(--panel)}
+
+.hero{display:flex;flex-direction:column;align-items:center;padding:32px 20px 48px}
+h1{font-size:clamp(36px,4.6vw,48px);line-height:1.08;letter-spacing:-.025em;text-align:center;color:var(--ink);margin:0 0 32px}
+
+.card{width:min(600px,100%);background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.tabs{display:flex;align-items:center;gap:4px;padding:20px 20px 16px}
+.tab{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:10px;font-weight:500;font-size:14px;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tab:hover{background:var(--panel-2);color:var(--ink)}
+.tab.on{background:var(--accent-soft);color:var(--accent-ink)}
+.tabs .sp{flex:1}
+.tabs .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tabs .ic:hover{background:var(--panel-2);color:var(--ink)}
+.tabs .ic svg{width:18px;height:18px}
+
+.promo{margin:0 20px;padding:32px;border-radius:12px;background:var(--promo);display:flex;align-items:center;gap:20px}
+.promo-txt{flex:1;min-width:0}
+.promo-h{font-family:var(--head);font-weight:500;font-size:clamp(22px,3.4vw,28px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);margin:0 0 8px;text-wrap:balance}
+.promo-sub{font-size:15px;line-height:1.6;color:var(--text-2);margin:0;max-width:34ch}
+.promo-grid{flex:0 0 auto;display:grid;grid-template-columns:repeat(2,auto);gap:16px}
+.pico{width:52px;height:52px;border-radius:50%;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);display:grid;place-items:center;overflow:hidden}
+.pico img{width:100%;height:100%;object-fit:contain;display:block}
+.promo-flow{flex-direction:column;align-items:stretch;gap:24px}
+.promo-flow .promo-sub{max-width:44ch}
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.flow li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.flow li+li::before{content:"";position:absolute;top:22px;right:calc(50% + 30px);width:calc(100% - 52px);height:1px;background:var(--line-2)}
+.fi{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);color:var(--accent-ink)}
+.fi img{width:100%;height:100%;display:block}
+.fi svg{width:20px;height:20px}
+.fi.on{background:var(--accent);color:var(--accent-on);box-shadow:none}
+.flow b{margin-top:4px;font-weight:500;font-size:14px;color:var(--ink)}
+.flow small{font-size:13px;line-height:1.4;color:var(--muted)}
+.cta-wrap{padding:20px}
+.cta{width:100%;height:60px;border-radius:12px;background:var(--accent);color:var(--accent-on);font-weight:500;font-size:16px;transition:background-color .16s var(--ease),transform .12s var(--ease)}
+.cta:hover{background:var(--accent-hover)}
+.cta:active{transform:scale(.99)}
+@media(max-width:470px){.promo{flex-direction:column;align-items:flex-start}.promo-grid{grid-template-columns:repeat(4,auto)}.promo-sub{max-width:none}}
+
+.learn{max-width:720px;margin:48px auto 0;width:100%;padding:0 24px 72px}
+.learn-h{font-size:14px;font-weight:500;color:var(--muted);text-align:center;margin:0 0 12px}
+.lrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-start}
+.lcard{flex:0 0 auto;background:transparent;border:1px solid var(--line-2);border-radius:10px;transition:background-color .16s var(--ease),border-color .16s var(--ease)}
+.lcard>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;font-weight:500;font-size:14px;color:var(--text-2)}
+.lcard>summary::-webkit-details-marker{display:none}
+.lcard:hover{border-color:var(--faint);background:var(--card)}.lcard:hover>summary{color:var(--ink)}
+.lcard .chev{width:6px;height:6px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);margin-top:-4px;flex-shrink:0;transition:transform .16s var(--ease)}
+.lcard[open]{order:9;flex:0 0 100%;min-width:0;background:var(--card);border-color:var(--line-2);border-radius:16px;margin-top:8px}
+.lcard[open]>summary{height:auto;padding:20px 24px 0;color:var(--muted);font-size:13px}
+.lcard[open] .chev{transform:rotate(225deg);margin-top:4px}
+.lbody{padding:4px 24px 24px;max-width:660px}
+.lbody h2{font-size:22px;line-height:1.3;color:var(--ink);margin:8px 0 4px}
+.lbody h3{font-size:15px;line-height:1.4;color:var(--ink);margin:20px 0 4px}
+.lbody p{margin:0;font-size:15px;line-height:1.7;color:var(--text-2)}
+.lbody p+p{margin-top:8px}
+.lbody ul,.lbody ol{margin:8px 0 0;padding-left:20px}
+.lbody li{font-size:15px;line-height:1.7;color:var(--text-2);margin-bottom:4px}
+.lbody a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+.lbody strong,.lbody b{color:var(--ink);font-weight:500}
+.lbody .tbl{overflow-x:auto;margin:16px 0 4px}
+.lbody table{width:100%;min-width:420px;border-collapse:collapse;font-size:14px}
+.lbody caption{text-align:left;color:var(--muted);font-size:13px;margin-bottom:8px}
+.lbody th,.lbody td{text-align:left;padding:8px 12px;border:1px solid var(--line-2);vertical-align:top;line-height:1.45}
+.lbody thead th{background:var(--panel);color:var(--ink);font-weight:500}
+.lbody tbody th{background:var(--panel);color:var(--muted);white-space:nowrap;font-weight:500}
+.lbody td{color:var(--text-2)}
+.lfaq h3{margin-top:16px;font-size:16px}
+
+footer{border-top:1px solid var(--line-2);background:var(--card)}
+.foot{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:20px 24px 24px;color:var(--muted);font-size:13px}
+.foot a{color:var(--muted);transition:color .16s var(--ease)}.foot a:hover{color:var(--ink)}.foot .sep{color:var(--faint)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,8px);background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;font-size:13px;box-shadow:0 16px 40px -16px rgba(13,17,28,.5);z-index:60;opacity:0;visibility:hidden;transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+@media(max-width:1120px){.nlinks{display:none}}
+@media(max-width:720px){.chain span{display:none}.chain{padding:0 8px;gap:4px}}
+@media(max-width:560px){
+  .nav{padding:12px 16px;gap:8px}
+  .brand{font-size:16px}
+  .brand img{width:24px;height:24px}
+  .chain{height:36px;padding:0 8px;gap:4px}
+  .chain span{display:none}
+  .connect{height:36px;padding:0 12px;font-size:13px}
+  .hero{padding:24px 16px 40px}
+  .tabs{padding:16px 16px 12px}.promo{margin:0 16px;padding:24px}.cta-wrap{padding:16px}.cta{height:56px}
+  .learn{margin-top:40px;padding:0 16px 56px}
+}
 </style>
+<link rel="prerender" href="/dashboard/">
+<link rel="prefetch" href="/dashboard/" as="document">
+<link rel="preload" href="/dashboard/" as="document">
 </head>
-<body id="top">
-<a class="c0aed93" href="#content">Skip to content</a>
-<header class="cf6c705">
-<nav class="c08a9cf" aria-label="Main navigation">
-<a class="c373645" href="#top"><span class="cbce588" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/></svg></span>Swap guide</a>
-<div class="c8a67db"><a href="#key-facts">Key facts</a><a href="#sources">Sources</a><a class="cb0193c" href="dashboard/">Swap <span aria-hidden="true">↗</span></a></div>
-</nav>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-cv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 6 5 5 5-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 10 4-1.6 7-5.6 7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="7" rx="5" ry="2.5"/><path d="M4 7v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V7"/><path d="M10 15.5c.6 1.2 2.6 2 5 2 2.8 0 5-1.1 5-2.5v-4c0-1.4-2.2-2.5-5-2.5"/><path d="M20 15v4c0 1.4-2.2 2.5-5 2.5s-5-1.1-5-2.5v-2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/><path d="M12 14.5v2"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-6 6.4-6 10.5a6 6 0 0 0 12 0c0-4.1-6-10.5-6-10.5z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/><path d="M8 7.5h.01M8 16.5h.01"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.4-2.3 1a7.6 7.6 0 0 0-1.7-1L15 2.5h-4l-.4 2.6c-.6.3-1.2.6-1.7 1l-2.3-1-2 3.4L4.6 11a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.4 2.3-1c.5.4 1.1.7 1.7 1l.4 2.6h4l.4-2.6c.6-.3 1.2-.6 1.7-1l2.3 1 2-3.4z"/></symbol>
+</defs></svg>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Cyber Swap home"><img src="icon.svg" alt=""><span>Cyber Swap</span></a>
+  <nav class="nlinks" aria-label="Primary">
+    <a href="#overview">What is Cyber</a>
+    <a href="#compare">Cyber vs mainnet</a>
+    <a href="#how">How to swap</a>
+    <a href="#fees">Fees &amp; gas</a>
+    <a href="#security">Security</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <span class="spacer"></span>
+  <a class="chain" href="/dashboard/" style="text-decoration:none"><img src="assets/coin-cyber-swap.svg" alt=""><span>Cyber</span><svg class="cv" aria-hidden="true"><use href="#i-cv"/></svg></a>
+  <a class="connect" href="/dashboard/" style="text-decoration:none">Connect wallet</a>
 </header>
-<div class="cf6c705">
-<div class="c7dbb1c"><nav class="c80f01e" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Swaps</span> <span>/</span> <span>CyberSwap</span></nav></div>
-<section class="cbcdd1e" aria-labelledby="hero-title">
-<div class="c967814">
-<p class="cd5e482">Plan your swap</p>
-<h1 id="hero-title"><em>CyberSwap</em>.</h1>
-<p class="c5fce74">CyberSwap is a self-custody interface for exchanging one token for another directly from your own wallet, using automated market maker liquidity pools instead of a matched order book. You pick the pair, review the price impact and the minimum amount you will receive before you sign, approve the token if needed, and pay the network's gas fee in its native token. Nothing passes through a custodian at any point — CyberSwap only ever asks your wallet to sign transactions you can read.</p>
-<a class="c1093da" href="dashboard/">Swap <span class="cab4c4a" aria-hidden="true">↗</span></a>
-<p class="cbc3cb7">Compare the route. Estimate the rate.</p>
-</div>
-<aside class="c0b4679" aria-labelledby="estimator-title">
-<div class="ca0aa93">
-<div class="c1e9c87"><h2 id="estimator-title">Swap estimator</h2><span class="ce1cac2">Live estimate</span></div>
-<label class="cffaea4" for="amount">You pay</label>
-<div class="ce23524"><input id="amount" type="number" inputmode="decimal" min="1" max="1000000000" step="0.01" value="1000" aria-describedby="amount-help amount-error"><span class="c0b9ba6">units</span></div>
-<p class="c6a178a" id="amount-help">Enter 1–1,000,000,000 units, up to two decimal places.</p>
-<p class="cda5697" id="amount-error" aria-live="polite"></p>
-<div class="cc5fea7" aria-label="Swap route">
-<div class="c6a1a54"><span>From</span><div class="cd1b7bd"><img src="assets/tokens/eth.svg" alt="Ethereum" width="28" height="28"></div></div>
-<span class="c2f3c1b" aria-hidden="true">→</span>
-<div class="c6a1a54"><span>To</span><div class="cd1b7bd"><img src="assets/tokens/arb.svg" alt="Arbitrum" width="28" height="28"></div></div>
-</div>
-<div class="c53d5d6" aria-live="polite" aria-atomic="true">
-<p class="c89ca45">Estimated amount received</p>
-<div class="c98888d"><output id="received" for="amount">998.25</output><span class="c0b9ba6">units</span></div>
-<dl class="c1e7c8f">
-<div><dt>Estimated fee</dt><dd><output id="fee" for="amount">1.75</output> units</dd></div>
-<div><dt>Estimated time</dt><dd><output id="time" for="amount">5–7 min</output></dd></div>
-</dl>
-</div>
-<a class="c1093da" href="dashboard/">Swap <span class="cab4c4a" aria-hidden="true">→</span></a>
-<p class="ce0fe5c">Fee = 0.15% of the amount + 0.25 units. Time starts at 2–4 minutes, adding one minute for every tenfold increase from 1 unit, rounded up.</p>
-<noscript><p class="c6a178a">Enable JavaScript to update the estimate as you change the amount.</p></noscript>
-</div>
-</aside>
-</section>
-<section class="cc12da0" id="key-facts" aria-labelledby="facts-title">
-<h2 class="cbb3e55" id="facts-title">Key facts</h2>
-<table class="c4d35ef"><tbody><tr><th scope="row">Interface type</th><td>Self-custody swap, automated market maker</td></tr>
-<tr><th scope="row">Custody</th><td>You hold your keys the entire time</td></tr>
-<tr><th scope="row">Price mechanism</th><td>Liquidity pool reserves, not an order book</td></tr>
-<tr><th scope="row">Gas</th><td>Paid in the network's native token</td></tr>
-<tr><th scope="row">Settlement</th><td>A single on-chain transaction per swap</td></tr>
-<tr><th scope="row">Approvals</th><td>Token approval required before the first swap of an ERC-20</td></tr></tbody></table>
-</section>
-<main class="c8cb31d" id="content">
-<section class="c4fb425"><h2 class="c12a171">What CyberSwap Is</h2><div class="ccfda15"><strong>CyberSwap is a self-custody swap interface that lets you exchange one token for another straight from your wallet, pricing every trade against liquidity pool reserves rather than a book of buy and sell orders.</strong> There is no sign-up and no deposit into a custodial account — you connect a wallet you already control, choose the token you hold and the token you want, and the interface quotes a rate pulled live from on-chain pools. When you confirm, a single transaction swaps the tokens atomically: either the full trade settles or it reverts, so you never end up holding half a trade.<h3>How an Automated Market Maker Prices a Swap</h3>Most swap interfaces, CyberSwap included, route trades through automated market maker pools rather than matching individual buyers with sellers. Each pool holds a reserve of two tokens, and a pricing formula sets the exchange rate from the ratio between them — the more of one token the pool already holds relative to the other, the cheaper that token is to buy. The mechanics behind this model are documented in detail in the <a href="https://docs.uniswap.org/" rel="nofollow noopener" target="_blank">Uniswap protocol documentation</a>, which many AMM designs trace their logic back to.<h3>Liquidity Pools Are the Counterparty</h3>When you swap on CyberSwap you are trading against a liquidity pool, not against another person waiting on the other side. Anyone can deposit a pair of tokens into a pool and earn a share of the trading fees collected from every swap that passes through it, which is why deeper pools tend to offer tighter pricing. The general concept of trading against pooled liquidity rather than a matched order book is summarized on <a href="https://en.wikipedia.org/wiki/Decentralized_exchange" rel="nofollow noopener" target="_blank">Wikipedia's decentralized exchange entry</a>.</div></section>
-<section class="c4fb425"><h2 class="c12a171">Price Impact and Slippage Tolerance on CyberSwap</h2><div class="ccfda15">Two numbers decide how much you actually receive from a CyberSwap trade: price impact and slippage tolerance. Price impact is how far the pool's price moves because your own trade changes the ratio of reserves — the larger your trade relative to the pool, the more the price moves against you before the swap finishes. Slippage tolerance is a limit you set yourself, telling the contract the worst exchange rate you will accept between the moment you sign and the moment the transaction is mined.<h3>Why Larger Trades Move the Price More</h3>A small trade against a deep pool barely shifts the reserve ratio, so the quoted rate and the final rate stay close together. A large trade against a shallow pool can shift that ratio substantially, meaning the average price you pay across the trade is worse than the price shown at the very start of the quote. Splitting a large order into smaller trades, or routing through a deeper pool, is the usual way to keep price impact down.<h3>Setting a Slippage Tolerance That Protects You</h3>A slippage tolerance that is too tight can make a trade fail during normal price movement, wasting the gas spent on the attempt. A tolerance that is too loose exposes you to sandwich attacks, where someone trades ahead of and behind your transaction to capture the difference. A moderate default with the option to widen it for volatile pairs is the balance most swap interfaces, CyberSwap included, aim for.</div></section>
-<section class="c4fb425"><h2 class="c12a171">Token Approvals Before a CyberSwap Trade</h2><div class="ccfda15">Swapping an ERC-20 token for the first time on CyberSwap takes two signatures rather than one. The first grants the swap contract an allowance to move a specific token out of your wallet; the second actually executes the swap itself. Native assets like ETH never need this step because they are not governed by the ERC-20 allowance standard.<h3>Approve and Swap Are Separate Signatures</h3>An approval signature only sets a permission — it does not move any funds on its own. The swap signature that follows is the transaction that actually exchanges your tokens. Keeping these as two distinct steps means you can review exactly what you are permitting before any token leaves your wallet.<h3>Limit the Allowance You Grant</h3>Many interfaces default to an unlimited allowance for convenience, letting you skip the approval step on future trades of the same token. A limited allowance, sized to the trade in front of you, is safer: if the contract you approved is ever compromised, the most it can move is the amount you actually authorized, not your entire balance.</div></section>
-<section class="c4fb425"><h2 class="c12a171">Routing a CyberSwap Trade to the Best Pool</h2><div class="ccfda15">The same token pair can exist across several pools with different fee tiers and different depths, so CyberSwap compares the available routes and picks the one that returns the most tokens after fees and price impact — sometimes splitting a trade across more than one pool when that produces a better combined result. A deeper pool at a slightly higher fee tier can still beat a shallow pool at a lower fee tier once price impact is accounted for.<table><thead><tr><th>Fee tier</th><th>Typical pair</th><th>Trade-off</th></tr></thead><tbody><tr><td>Low fee</td><td>Stable-to-stable pairs</td><td>Cheaper per trade, needs tight pricing to stay viable</td></tr><tr><td>Standard fee</td><td>Major token pairs</td><td>Balances depth and cost for most swaps</td></tr><tr><td>Higher fee</td><td>Volatile or thin pairs</td><td>Compensates liquidity providers for added risk</td></tr></tbody></table></div></section>
-<section class="c4fb425"><h2 class="c12a171">Gas, Native Tokens, and Self-Custody on CyberSwap</h2><div class="ccfda15">Every CyberSwap transaction — approval and swap alike — is settled on-chain, which means it costs gas paid in the network's native token rather than in the tokens being swapped. On an Ethereum-based network that is ETH, and the general mechanics of how gas pricing works are laid out on <a href="https://ethereum.org/en/developers/docs/gas/" rel="nofollow noopener" target="_blank">ethereum.org</a>. If you bridge over to an EVM network built for lower fees, such as <a href="https://docs.arbitrum.io/" rel="nofollow noopener" target="_blank">Arbitrum</a>, the swap itself works the same way but gas typically costs a small fraction of what it does on the base layer. Throughout all of this your tokens stay in your own wallet; CyberSwap never takes custody, and the only thing you ever sign is a transaction you can read before approving it.</div></section>
-<section class="c4fb425"><h2 class="c12a171">How to Swap on CyberSwap, Step by Step</h2><div class="ccfda15">The flow stays the same for every pair, which is what makes it predictable once you have done it a few times.<ul><li>Connect your self-custody wallet to CyberSwap and select the token you hold and the token you want.</li><li>Enter the amount; review the quoted rate, the estimated price impact, and the minimum amount you will receive.</li><li>Set a slippage tolerance appropriate for the pair — tighter for stable pairs, wider for volatile ones.</li><li>Approve the token if this is your first swap of it, then sign the swap transaction and pay gas in the native token.</li><li>Confirm the trade settled by checking the resulting balance in your wallet.</li></ul></div></section>
-<section class="c4fb425"><h2 class="c12a171">Is CyberSwap Safe to Use?</h2><div class="ccfda15">CyberSwap's self-custody design means the asset never passes through a third party, so the risks that remain are the ones you control at the moment you sign. Confirm the token's contract address before trading an unfamiliar pair, read the amount you will receive rather than trusting the headline rate alone, and keep approvals limited to what each trade actually needs.<h3>Checking a Contract Before You Trust It</h3>Before swapping an unfamiliar token, verify its contract address against a trusted source such as <a href="https://arbiscan.io/" rel="nofollow noopener" target="_blank">Arbiscan</a> rather than trusting a name or logo alone, since anyone can deploy a token that copies both. Matching the address, not the symbol, is what actually confirms you are trading the asset you think you are.<h3>The Rule That Never Changes</h3>No swap interface, wallet or support channel ever needs your seed phrase. CyberSwap only ever asks your wallet to sign a transaction you can read — it never asks you to type or paste your recovery words anywhere, and anyone who does ask is attempting fraud.</div></section><section class="c4fb425 c7b9139" id="related"><h2 class="c12a171">Related tools</h2><div class="ccfda15"><ul><li><a href="https://swap-tron.github.io/">Tron Swap guide</a></li><li><a href="https://swap-monero.github.io/">Monero Swap</a></li><li><a href="https://optimism-dex.github.io/">Optimism DEX</a></li><li><a href="https://swap-polygon.github.io/">Swap Polygon explained</a></li><li><a href="https://swap-mantle.github.io/">Swap Mantle explained</a></li></ul></div></section>
-<details class="c88bd8d"><summary class="c835f83">What is CyberSwap?</summary><div class="caa0ca2">CyberSwap is a self-custody swap interface that exchanges one token for another by pricing trades against automated market maker liquidity pools instead of a matched order book, while your tokens stay in your own wallet.</div></details>
-<details class="c88bd8d"><summary class="c835f83">Does CyberSwap take custody of my tokens?</summary><div class="caa0ca2">No. CyberSwap only ever asks your wallet to sign a transaction. You hold your own keys before, during and after every swap.</div></details>
-<details class="c88bd8d"><summary class="c835f83">Why does my CyberSwap trade need two signatures?</summary><div class="caa0ca2">The first signature approves a limited allowance for the ERC-20 token being swapped; the second actually executes the swap. Native assets like ETH skip the approval step entirely.</div></details>
-<details class="c88bd8d"><summary class="c835f83">What is price impact on a CyberSwap trade?</summary><div class="caa0ca2">Price impact is how far a pool's price moves because your own trade changes the ratio of its reserves. Larger trades against shallower pools move the price more than smaller trades against deeper pools.</div></details>
-<details class="c88bd8d"><summary class="c835f83">How should I set slippage tolerance?</summary><div class="caa0ca2">Use a tighter tolerance for stable pairs and a wider one for volatile pairs. Too tight and the trade can fail; too loose and you risk a worse fill than necessary.</div></details>
-<details class="c88bd8d"><summary class="c835f83">What gas token does CyberSwap use?</summary><div class="caa0ca2">Gas is paid in the native token of whichever network you are trading on — ETH on Ethereum, or the equivalent native token on other EVM networks such as Arbitrum — never in the tokens being swapped.</div></details>
-<details class="c88bd8d"><summary class="c835f83">How do I know I am swapping the real token?</summary><div class="caa0ca2">Verify the contract address on a trusted explorer before trading an unfamiliar pair. Matching the address rather than the name or logo is what actually confirms the token's identity.</div></details>
+
+<main>
+  <section class="hero">
+    <h1>Cyber Swap</h1>
+
+    <section class="card" aria-label="Cyber Swap">
+      <div class="tabs">
+        <button class="tab on" type="button">Swap</button>
+        <button class="tab" type="button">Status</button>
+        <span class="sp"></span>
+        <button class="ic gear" type="button" aria-label="Settings" data-toast="Settings are disabled in this demo."><svg aria-hidden="true"><use href="#i-gear"/></svg></button>
+      </div>
+
+      <div class="promo">
+        <div class="promo-txt">
+          <h2 class="promo-h">Swap tokens on the Cyber network</h2>
+          <p class="promo-sub">Cyber is an Ethereum layer-2 in the Superchain. Connect your wallet, review the quote and sign.</p>
+        </div>
+        <div class="promo-grid" aria-hidden="true">
+          <span class="pico"><img src="assets/coin-cyber-swap.svg" alt=""></span>
+          <span class="pico"><img src="assets/tether-usdt.svg" alt=""></span>
+          <span class="pico"><img src="assets/usd-coin-usdc.svg" alt=""></span>
+          <span class="pico"><img src="assets/ethereum-eth.svg" alt=""></span>
+        </div>
+      </div>
+
+      <div class="cta-wrap"><a class="cta" href="/dashboard/" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Swap on Cyber</a></div>
+    </section>
+  </section>
+
+  <section class="learn" id="learn">
+    <p class="learn-h">Learn about Cyber Swap</p>
+    <div class="lrow">
+      <details class="lcard" name="learn" id="overview"><summary><span>What is Cyber</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>What Cyber Swap does</h2>
+<h3>Token swaps on an Ethereum layer-2</h3>
+<p><strong>Cyber Swap</strong> is an interface for exchanging tokens on Cyber, a layer-2 network built on Ethereum by CyberConnect and part of the Optimism Superchain. Trades are routed through on-chain liquidity on Cyber and settle in your own wallet.</p>
+<h3>Why a layer-2</h3>
+<p>A layer-2 processes transactions off the main chain and posts the results back to Ethereum. That generally makes transactions cheaper than on Ethereum mainnet while inheriting its security model. Learn more about <a href="https://ethereum.org/en/layer-2/" target="_blank" rel="nofollow noopener">layer-2 networks</a>.</p></div></details>
+
+      <details class="lcard" name="learn" id="compare"><summary><span>Cyber vs mainnet</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Cyber vs Ethereum mainnet</h2>
+<p>The swap works the same way on both networks. What changes is where the transaction runs and how you get funds there.</p>
+<div class="tbl"><table><caption>Swapping on Cyber vs Ethereum mainnet</caption><thead><tr><th scope="col"></th><th scope="col">Cyber</th><th scope="col">Ethereum mainnet</th></tr></thead><tbody><tr><th scope="row">Network type</th><td>layer-2 in the Superchain</td><td>layer-1</td></tr><tr><th scope="row">Gas token</th><td>ETH</td><td>ETH</td></tr><tr><th scope="row">Getting funds in</th><td>bridge from Ethereum</td><td>already there</td></tr><tr><th scope="row">Cost</th><td>layer-2 gas plus pool fee</td><td>mainnet gas plus pool fee</td></tr></tbody></table></div>
+<h3>In practice</h3>
+<p>Tokens must be on Cyber before you can swap them there. If your funds are on Ethereum, bridge them first and keep some ETH on Cyber for gas.</p></div></details>
+
+      <details class="lcard" name="learn" id="how"><summary><span>How to swap</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>How to swap on Cyber</h2>
+<h3>Quote first, sign second</h3>
+<p>The interface shows the expected output, the route, the price impact and your slippage tolerance. Nothing is sent to the network until you confirm in your wallet.</p>
+<h3>Step by step</h3>
+<ol>
+<li>Connect your wallet and switch it to the Cyber network.</li>
+<li>Choose the token you sell and the token you want, then enter an amount.</li>
+<li>Review the quote, route and estimated gas, and approve the sell token once if it is an ERC-20 token.</li>
+<li>Sign the swap; it settles on Cyber and the bought token appears in your wallet.</li>
+</ol>
+<p>If your wallet does not list Cyber yet, add the network with the details from the network's own documentation.</p></div></details>
+
+      <details class="lcard" name="learn" id="fees"><summary><span>Fees &amp; gas</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>What a swap on Cyber costs</h2>
+<h3>Gas in ETH</h3>
+<p>Transactions on Cyber are paid in ETH. Every step, an approval and the swap itself, is a separate transaction with its own gas fee. See how <a href="https://ethereum.org/en/developers/docs/gas/" target="_blank" rel="nofollow noopener">gas works</a>.</p>
+<h3>Trading cost</h3>
+<p>Price impact, your slippage tolerance and any pool or routing fee are already reflected in the quoted output. Thinner pools usually mean more price impact on larger trades.</p>
+<h3>Bridging</h3>
+<p>Moving funds between Ethereum and Cyber carries its own bridge fee and gas, shown by the bridge you use. It is separate from the swap.</p></div></details>
+
+      <details class="lcard" name="learn" id="security"><summary><span>Security</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Staying safe on Cyber</h2>
+<h3>Non-custodial by design</h3>
+<p>You connect your own wallet and sign every transaction yourself. The interface quotes and routes; it never holds your funds or your keys.</p>
+<h3>Before you sign</h3>
+<ul>
+<li>Confirm that your wallet is on the Cyber network, not another chain with similar assets.</li>
+<li>Verify the token contract address; counterfeit tokens often copy the name and logo of real ones.</li>
+<li>Approve only the amount you need and revoke old allowances you no longer use.</li>
+<li>Layer-2 bridges and smart contracts can contain bugs, so risk is never zero.</li>
+</ul></div></details>
+
+      <details class="lcard" name="learn" id="faq"><summary><span>FAQ</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody lfaq"><h2>Cyber Swap FAQ</h2>
+<h3>What is Cyber Swap?</h3>
+<p>It is a non-custodial interface for swapping tokens on Cyber, an Ethereum layer-2 built by CyberConnect and part of the Optimism Superchain. You connect your wallet, review a quote and sign the swap yourself.</p>
+<h3>What do I need to pay gas on Cyber?</h3>
+<p>You need ETH on the Cyber network. Gas is always paid in ETH, so keep a small balance even if the tokens you trade are stablecoins or other assets.</p>
+<h3>How do I get funds onto Cyber?</h3>
+<p>Use a bridge to move assets from Ethereum or another supported network onto Cyber. The bridge shows its own fee and timing, and the swap interface only works with tokens already on Cyber.</p>
+<h3>Do I need an account to swap?</h3>
+<p>No. A wallet is enough, with no sign-up or identity check on the interface. Your funds stay in your wallet unless you approve and sign a swap.</p>
+<h3>Why is a token approval needed?</h3>
+<p>ERC-20 tokens need a one-time allowance before a router can move them on your behalf. The approval is a separate transaction that costs a little gas. Native ETH needs no approval.</p>
+<h3>Is swapping on a layer-2 riskier than on Ethereum?</h3>
+<p>It adds some risks of its own, such as bridge contracts and the layer-2's own software, on top of the usual smart contract and price risks. Check the quote, verify token addresses and only move what you are comfortable with.</p></div></details>
+    </div>
+  </section>
 </main>
-<section class="c4e3e87" id="sources" aria-labelledby="sources-title">
-<h2 class="cbb3e55" id="sources-title">Sources</h2>
-<ul class="cdcef0e"><li><a class="cfdc95f" href="https://docs.uniswap.org/" rel="nofollow noopener" target="_blank">Uniswap protocol documentation</a></li>
-<li><a class="cfdc95f" href="https://docs.arbitrum.io/" rel="nofollow noopener" target="_blank">Arbitrum documentation</a></li>
-<li><a class="cfdc95f" href="https://arbiscan.io/" rel="nofollow noopener" target="_blank">Arbiscan</a></li>
-<li><a class="cfdc95f" href="https://en.wikipedia.org/wiki/Decentralized_exchange" rel="nofollow noopener" target="_blank">Wikipedia — Decentralized exchange</a></li></ul>
-</section>
-<footer class="cd40517"><p>Updated Nov 01, 2026</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></footer>
-</div>
+
+<footer>
+  <div class="foot"><span>&copy; 2026 Cyber Swap</span><span class="sep">&middot;</span><a href="legal.html#privacy">Privacy</a><span class="sep">&middot;</span><a href="legal.html#terms">Terms</a><span class="sep">&middot;</span><span>Non-custodial &middot; Cyber L2</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
-(() => {
-  const amount = document.getElementById('amount');
-  const received = document.getElementById('received');
-  const fee = document.getElementById('fee');
-  const time = document.getElementById('time');
-  const error = document.getElementById('amount-error');
-  const format = new Intl.NumberFormat('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  let timer;
-  function update() {
-    const value = amount.valueAsNumber;
-    if (!Number.isFinite(value) || !amount.validity.valid) {
-      amount.setAttribute('aria-invalid', 'true');
-      error.textContent = 'Enter an amount from 1 to 1,000,000,000 with up to two decimal places.';
-      received.value = '—';
-      fee.value = '—';
-      time.value = '—';
-      return;
-    }
-    amount.removeAttribute('aria-invalid');
-    error.textContent = '';
-    const amountCents = Math.round(value * 100);
-    const feeCents = Math.round(amountCents * 0.0015 + 25);
-    const minutes = 2 + Math.ceil(Math.log10(value));
-    received.value = format.format((amountCents - feeCents) / 100);
-    fee.value = format.format(feeCents / 100);
-    time.value = minutes + '–' + (minutes + 2) + ' min';
-  }
-  amount.addEventListener('input', () => {
-    clearTimeout(timer);
-    timer = setTimeout(update, 180);
-  });
-  amount.addEventListener('change', () => {
-    clearTimeout(timer);
-    update();
-  });
-  update();
+(function(){
+"use strict";
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.classList.toggle('on',x===t);});});});
+
+var toast=document.getElementById('toast'),tT;
+function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tT);tT=setTimeout(function(){toast.classList.remove('show');},3000);}
+[].slice.call(document.querySelectorAll('[data-toast]')).forEach(function(b){b.addEventListener('click',function(){notify(b.getAttribute('data-toast'));});});
+
+function openHash(){var id=location.hash.slice(1);if(!id)return;var c=document.getElementById(id);if(c&&c.matches&&c.matches('.lcard[name="learn"]'))c.open=true;}
+window.addEventListener('hashchange',openHash);openHash();
+[].slice.call(document.querySelectorAll('.nlinks a')).forEach(function(a){a.addEventListener('click',function(){var c=document.getElementById(a.getAttribute('href').slice(1));if(c&&c.matches('.lcard'))c.open=true;});});
 })();
 </script>
-</body>
-</html>
+</body></html>

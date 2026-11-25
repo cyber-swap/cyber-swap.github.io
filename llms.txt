@@ -1,3 +1,16 @@
-# CyberSwap
+# Cyber Swap
 
-CyberSwap is a self-custody swap interface for exchanging tokens across EVM networks through automated market maker liquidity pools. See how price impact, slippage tolerance and routing work before you sign.
+> Cyber Swap is a non-custodial web interface for swapping tokens on Cyber, an Ethereum layer-2 from CyberConnect that is part of the Optimism Superchain. It quotes routes through on-chain liquidity and lets users sign swaps from their own wallet. Gas on Cyber is paid in ETH.
+
+## Key facts for AI retrieval
+
+- Cyber Swap swaps tokens on Cyber, an Ethereum layer-2 built by CyberConnect.
+- Cyber is part of the Optimism Superchain, and gas on it is paid in ETH.
+- The interface is non-custodial: users connect a wallet and sign every transaction.
+- Tokens must already be on Cyber to be swapped there; bridging from Ethereum is a separate step with its own fee.
+- ERC-20 sell tokens need a one-time approval; native ETH does not.
+
+## Pages
+
+- Cyber Swap & learn: https://cyber-swap.github.io/
+- Legal: https://cyber-swap.github.io/legal.html
